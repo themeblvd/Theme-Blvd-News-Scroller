@@ -1,0 +1,115 @@
+/* =FlexSlider Core Styles
+-------------------------------------------------------------- */
+
+/* Browser Resets */
+.flex-container a:active,
+.flexslider a:active {outline: none;}
+.slides,
+.flex-control-nav,
+.flex-direction-nav {margin: 0; padding: 0; list-style: none;} 
+
+/* Necessary Styles */
+.flexslider {width: 100%; margin: 0; padding: 0;}
+.flexslider .slides > li {display: none;} /* Hide the slides before the JS is loaded. Avoids image jumping */
+.flexslider .slides img {max-width: 100%; display: block;}
+.flex-pauseplay span {text-transform: capitalize;}
+
+/* Clearfix for the .slides element */
+.slides:after {content: "."; display: block; clear: both; visibility: hidden; line-height: 0; height: 0;} 
+html[xmlns] .slides {display: block;} 
+* html .slides {height: 1%;}
+
+/* No JavaScript Fallback */
+/* If you are not using another script, such as Modernizr, make sure you
+ * include js that eliminates this class on page load */
+.no-js .slides > li:first-child {display: block;}
+
+/* =Theme Blvd News Scroller
+-------------------------------------------------------------- */
+
+/* Primary Design */
+.themeblvd-news-scroller {
+	display: none;
+	padding: 0 0 28px 0; /* Matches height of scroller-nav */
+	position: relative;
+}
+.themeblvd-news-scroller li,
+.widget .themeblvd-news-scroller li  {
+	padding: 0;
+	margin: 0;
+}
+/* Navigation */
+.themeblvd-news-scroller .scroller-nav {
+	background: #f2f2f2;
+	color: #666666;
+	height: 28px;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 2;
+}
+.themeblvd-news-scroller .scroller-nav span {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 11px;
+	font-style: italic;
+	line-height: 28px; /* Matches height of scroller-nav */
+	padding: 0 10px;
+}
+.themeblvd-news-scroller .scroller-nav .flex-direction-nav {
+	float: right;
+	padding: 6px 5px;
+}
+.themeblvd-news-scroller .flex-direction-nav li {
+	float: left;
+}
+.themeblvd-news-scroller .flex-direction-nav li a {
+	display: block;
+	background-image: url(images/arrows.png);
+	border: none;
+	padding: 0;
+	margin: 0 1px;	
+	width: 15px;
+	height: 15px;
+	text-indent: -9999px;
+}
+.themeblvd-news-scroller .scroller-nav-horizontal li a.prev {
+	background-position: 0 0;
+}
+.themeblvd-news-scroller .scroller-nav-horizontal li a.next {
+	background-position: -16px 0;
+}
+.themeblvd-news-scroller .scroller-nav-vertical li a.prev {
+	background-position: 0 -16px;
+}
+.themeblvd-news-scroller .scroller-nav-vertical li a.next {
+	background-position: -16px -16px;
+}
+.themeblvd-news-scroller .scroller-nav li a.prev:hover,
+.themeblvd-news-scroller .scroller-nav li a.next:hover {
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
+	filter: alpha(opacity=70);
+	-moz-opacity: 0.7;
+	-khtml-opacity: 0.7;
+	opacity: 0.7;
+}
+/* Post Content */
+.themeblvd-news-scroller .scroller-wrap {
+	padding: 0 5px 5px 5px;
+}
+.themeblvd-news-scroller .entry-title a,
+.widget .themeblvd-news-scroller .entry-title a {
+	border: 0;
+	text-decoration: none;
+}
+.themeblvd-news-scroller .scroller-image {
+	margin: 10px 0;
+}
+.themeblvd-news-scroller p {
+	margin: 0 0 5px 0;
+}
+.themeblvd-news-scroller .scroller-date {
+	display: none;
+}
+
+
