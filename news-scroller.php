@@ -45,7 +45,6 @@ add_action( 'wp_print_styles', 'themeblvd_news_scroller_css' );
 
 function themeblvd_news_scroller_scripts() {
 	wp_register_script( 'flexslider', plugins_url( 'assets/flexslider.js', __FILE__ ), array('jquery'), '2.1' );
-	wp_enqueue_script( 'flexslider' );
 }
 add_action( 'wp_enqueue_scripts', 'themeblvd_news_scroller_scripts', 11 ); // Priority 11, so this call to FlexSlider doesn't override Theme Blvd themes.
 
@@ -267,6 +266,8 @@ class TB_Widget_News_Scroller extends WP_Widget {
 		$title = apply_filters( 'widget_title', $instance['title'] );
 		if ( $title )
 			echo $before_title . $title . $after_title;
+		// Enqueue script
+		wp_enqueue_script( 'flexslider' );
 		?>
 		<script type="text/javascript">
 		jQuery(document).ready(function($) {
