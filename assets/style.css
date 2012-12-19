@@ -85,10 +85,12 @@ html[xmlns] .slides {display: block;}
 .themeblvd-news-scroller .flex-direction-nav li a:hover {
 	background-color: transparent;
 }
-.themeblvd-news-scroller .scroller-nav-horizontal li a.prev {
+.themeblvd-news-scroller .scroller-nav-horizontal li a.prev,
+.themeblvd-news-scroller .scroller-nav-fade li a.prev {
 	background-position: 0 0;
 }
-.themeblvd-news-scroller .scroller-nav-horizontal li a.next {
+.themeblvd-news-scroller .scroller-nav-horizontal li a.next,
+.themeblvd-news-scroller .scroller-nav-fade li a.next {
 	background-position: -16px 0;
 }
 .themeblvd-news-scroller .scroller-nav-vertical li a.prev {

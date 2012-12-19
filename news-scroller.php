@@ -2,7 +2,7 @@
 /*
 Plugin Name: Theme Blvd News Scroller Widget
 Description: This plugin is a simple widget with slider that rotates through posts.
-Version: 1.0.2
+Version: 1.0.3
 Author: Jason Bobich
 Author URI: http://jasonbobich.com
 License: GPL2
@@ -120,7 +120,7 @@ class TB_Widget_News_Scroller extends WP_Widget {
 				foreach ( $options as $id => $name ) {
 					$selected = '';
 					if($id == $instance['category']) $selected = 'selected="selected"';
-					$list .= '<option $selected value="'.$id.'">'.$name.'</option>';
+					$list .= '<option '.$selected.' value="'.$id.'">'.$name.'</option>';
 				}
 				echo $list;
 				?>
@@ -180,15 +180,15 @@ class TB_Widget_News_Scroller extends WP_Widget {
 		
 		<!-- Scroll Direction -->
 		<p>
-			<label for="<?php echo $this->get_field_id('scroll_direction'); ?>"><?php _e( 'Direction to scroll?', 'themeblvd' ); ?> </label>
+			<label for="<?php echo $this->get_field_id('scroll_direction'); ?>"><?php _e( 'How to transition?', 'themeblvd' ); ?> </label>
 			<select class="widefat" id="<?php echo $this->get_field_id('scroll_direction'); ?>" name="<?php echo $this->get_field_name('scroll_direction'); ?>">
 				<?php 
 				$list = null;
-				$options = array( 'vertical', 'horizontal' );
-				foreach ( $options as $option ) {
+				$options = array( 'vertical' => __('Scroll Vertical', 'themeblvd'), 'fade' => __('Fade', 'themeblvd') );
+				foreach ( $options as $key => $name ) {
 					$selected = "";
-					if($option == $instance['scroll_direction']) $selected = 'selected="selected"';
-					$list .= "<option $selected value='$option'>$option</option>";
+					if($key == $instance['scroll_direction']) $selected = 'selected="selected"';
+					$list .= "<option $selected value='$key'>$name</option>";
 				}
 				echo $list;
 				?>
@@ -253,6 +253,7 @@ class TB_Widget_News_Scroller extends WP_Widget {
 		$excerpt_limit = $instance['excerpt_limit'] ? $instance['excerpt_limit'] : 55;
 		$number_posts = $instance['num'] ? $instance['num'] : 10;
 		$category = $instance['category'] ? $instance['category'] : '';
+		$scroll_timeout = strval( $instance['scroll_timeout'] );
 		$args = array(
 			'category' => $category,
 			'numberposts' => $number_posts,
@@ -270,18 +271,20 @@ class TB_Widget_News_Scroller extends WP_Widget {
 		jQuery(document).ready(function($) {
 			$(window).load(function() {
 				$('#<?php echo $widget_id; ?> .flexslider').flexslider({
+					<?php if( $instance['scroll_direction'] == 'fade' ) : ?>
+					animation: 'fade',
+					<?php else : ?>
 					animation: 'slide',
+					slideDirection: '<?php echo $instance['scroll_direction']; ?>', // vertical or horizontal ... removed horizontal from selections because can't figure out bug.
+					<?php endif; ?>
 					controlsContainer: '#<?php echo $widget_id; ?> .scroller-nav',
-					slideDirection: '<?php echo $instance['scroll_direction']; ?>', // vertical or horizontal
 					controlNav: false,
 					animationDuration: 800,
-					<?php if( $instance['scroll_timeout'] )	: ?>
-						<?php if( $instance['scroll_timeout'] == '0' ) : ?>
-						slideshow: false,
-						<?php else : ?>
-						slideshow: true,
-						slideshowSpeed: <?php echo $instance['scroll_timeout'];?>000,
-						<?php endif; ?>
+					<?php if( $scroll_timeout == 0 ) : ?>
+					slideshow: false,
+					<?php else : ?>
+					slideshow: true,
+					slideshowSpeed: <?php echo $scroll_timeout;?>000,
 					<?php endif; ?>
 					start: function(slider){
 						var num = 2, // account for "clone" slide plugin adds

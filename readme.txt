@@ -3,7 +3,7 @@ Contributors: themeblvd
 Tags: themeblvd, slider, posts, scroll
 Requires at least: 3.2
 Tested up to: 3.3.1
-Stable tag: 1.0.2
+Stable tag: 1.0.3
 
 This plugin is a simple widget with slider that rotates through posts of specified category.
 
@@ -22,6 +22,12 @@ This plugin is a simple widget with slider that rotates through posts of specifi
 2. Backend view in Appearance > Widgets after placing in sidebar.
 
 == Changelog ==
+
+= 1.0.3 =
+
+* Couldn't figure out weird bug with horizontal scrolling, so replaced with fade transition.
+* Fixed scroll timeout issues to allow for 0 to turn off auto-rotation.
+* Fixed category selection bug.
 
 = 1.0.2 =
 
