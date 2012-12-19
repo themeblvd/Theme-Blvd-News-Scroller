@@ -185,7 +185,7 @@ class TB_Widget_News_Scroller extends WP_Widget {
 			<select class="widefat" id="<?php echo $this->get_field_id('scroll_direction'); ?>" name="<?php echo $this->get_field_name('scroll_direction'); ?>">
 				<?php 
 				$list = null;
-				$options = array( 'vertical' => __('Scroll Vertical', 'themeblvd'), 'fade' => __('Fade', 'themeblvd') );
+				$options = array( 'vertical' => __('Scroll Vertical', 'themeblvd'), 'horizontal' => __('Scroll Horizontal', 'themeblvd'), 'fade' => __('Fade', 'themeblvd') );
 				foreach ( $options as $key => $name ) {
 					$selected = "";
 					if($key == $instance['scroll_direction']) $selected = 'selected="selected"';
