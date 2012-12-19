@@ -29,13 +29,12 @@ html[xmlns] .slides {display: block;}
 
 /* Primary Design */
 .themeblvd-news-scroller {
-	display: none;
 	font-size: 12px;
 	padding: 0 0 28px 0; /* Matches height of scroller-nav */
 	position: relative;
 }
 .themeblvd-news-scroller ul.slides li,
-.widget .themeblvd-news-scroller ul.slides li  {
+.widget .themeblvd-news-scroller ul.slides li {
 	border: none;
 	margin: 0;
 	padding: 0;
@@ -44,6 +43,7 @@ html[xmlns] .slides {display: block;}
 .themeblvd-news-scroller .scroller-nav {
 	background: #f2f2f2;
 	color: #666666;
+	display: none;
 	height: 28px;
 	position: absolute;
 	right: 0;

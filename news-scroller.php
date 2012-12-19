@@ -291,7 +291,7 @@ class TB_Widget_News_Scroller extends WP_Widget {
 						var num = 2, // account for "clone" Flexslider adds
 							date = slider.container.find('li:nth-child('+num+')').find('.scroller-date').text();
 						slider.closest('.themeblvd-news-scroller').find('.scroller-nav span').text(date).fadeIn('fast');
-						$('#<?php echo $widget_id; ?> .themeblvd-news-scroller').fadeIn();
+						$('#<?php echo $widget_id; ?> .scroller-nav').fadeIn();
 					},
 					before: function(slider){
 						slider.closest('.themeblvd-news-scroller').find('.scroller-nav span').slideUp();
