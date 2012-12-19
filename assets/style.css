@@ -120,6 +120,9 @@ html[xmlns] .slides {display: block;}
 .themeblvd-news-scroller .scroller-wrap {
 	padding: 0 5px 5px 5px;
 }
+.themeblvd-news-scroller h4 {
+	margin-top: 0 !important; /* Fixes a bug in Flexlsider vertical slide. Must have NO margin on top. */
+}
 .themeblvd-news-scroller h4 a,
 .widget .themeblvd-news-scroller ul li h4 a {
 	border: 0;

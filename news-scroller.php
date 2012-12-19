@@ -44,7 +44,7 @@ add_action( 'wp_print_styles', 'themeblvd_news_scroller_css' );
  */
 
 function themeblvd_news_scroller_scripts() {
-	wp_register_script( 'flexslider', plugins_url( 'assets/flexslider.js', __FILE__ ), array('jquery'), '1.8' ); // Most recent Theme Blvd themes use v2.0.
+	wp_register_script( 'flexslider', plugins_url( 'assets/flexslider.js', __FILE__ ), array('jquery'), '2.1' );
 	wp_enqueue_script( 'flexslider' );
 }
 add_action( 'wp_enqueue_scripts', 'themeblvd_news_scroller_scripts', 11 ); // Priority 11, so this call to FlexSlider doesn't override Theme Blvd themes.
@@ -276,8 +276,7 @@ class TB_Widget_News_Scroller extends WP_Widget {
 					animation: 'fade',
 					<?php else : ?>
 					animation: 'slide',
-					slideDirection: '<?php echo $instance['scroll_direction']; ?>', // vertical or horizontal ... removed horizontal from selections because can't figure out bug.
-					direction: '<?php echo $instance['scroll_direction']; ?>', // "direction" is used for FlexSlider v2.0+
+					direction: '<?php echo $instance['scroll_direction']; ?>',
 					<?php endif; ?>
 					controlsContainer: '#<?php echo $widget_id; ?> .scroller-nav',
 					controlNav: false,
@@ -289,7 +288,7 @@ class TB_Widget_News_Scroller extends WP_Widget {
 					slideshowSpeed: <?php echo $scroll_timeout;?>000,
 					<?php endif; ?>
 					start: function(slider){
-						var num = 2, // account for "clone" slide plugin adds
+						var num = 2, // account for "clone" Flexslider adds
 							date = slider.container.find('li:nth-child('+num+')').find('.scroller-date').text();
 						slider.closest('.themeblvd-news-scroller').find('.scroller-nav span').text(date).fadeIn('fast');
 						$('#<?php echo $widget_id; ?> .themeblvd-news-scroller').fadeIn();
