@@ -2,7 +2,7 @@
 /*
 Plugin Name: Theme Blvd News Scroller Widget
 Description: This plugin is a simple widget with slider that rotates through posts.
-Version: 1.0.5
+Version: 1.0.6
 Author: Jason Bobich
 Author URI: http://jasonbobich.com
 License: GPL2
@@ -31,7 +31,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
  
 function themeblvd_news_scroller_css() {		
-	wp_register_style( 'themeblvd_news_scroller', plugins_url( 'assets/style.css', __FILE__ ), false, '1.0' );
+	wp_register_style( 'themeblvd_news_scroller', plugins_url( 'assets/style.css', __FILE__ ), false, '1.1' );
 	wp_enqueue_style( 'themeblvd_news_scroller' );
 }
 add_action( 'wp_print_styles', 'themeblvd_news_scroller_css' );
@@ -41,12 +41,10 @@ add_action( 'wp_print_styles', 'themeblvd_news_scroller_css' );
  */
 
 function themeblvd_news_scroller_scripts() {
-	wp_register_script( 'flexslider', plugins_url( 'assets/flexslider.js', __FILE__ ), array('jquery'), '1.8' );
-	wp_register_script( 'themeblvd_news_scroller', plugins_url( 'assets/scripts.js', __FILE__ ), array('flexslider'), '1.0' );
+	wp_register_script( 'flexslider', plugins_url( 'assets/flexslider.js', __FILE__ ), array('jquery'), '1.8' ); // Most recent Theme Blvd themes use v2.0.
 	wp_enqueue_script( 'flexslider' );
-	wp_enqueue_script( 'themeblvd_news_scroller' );
 }
-add_action( 'wp_enqueue_scripts', 'themeblvd_news_scroller_scripts' );
+add_action( 'wp_enqueue_scripts', 'themeblvd_news_scroller_scripts', 11 ); // Priority 11, so this call to FlexSlider doesn't override Theme Blvd themes.
 
 /**
  * Limit excerpt by number of words
@@ -276,6 +274,7 @@ class TB_Widget_News_Scroller extends WP_Widget {
 					<?php else : ?>
 					animation: 'slide',
 					slideDirection: '<?php echo $instance['scroll_direction']; ?>', // vertical or horizontal ... removed horizontal from selections because can't figure out bug.
+					direction: '<?php echo $instance['scroll_direction']; ?>', // "direction" is used for FlexSlider v2.0+
 					<?php endif; ?>
 					controlsContainer: '#<?php echo $widget_id; ?> .scroller-nav',
 					controlNav: false,

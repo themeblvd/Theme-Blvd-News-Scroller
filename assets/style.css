@@ -87,21 +87,29 @@ html[xmlns] .slides {display: block;}
 	background-color: transparent;
 }
 .themeblvd-news-scroller .scroller-nav-horizontal li a.prev,
-.themeblvd-news-scroller .scroller-nav-fade li a.prev {
+.themeblvd-news-scroller .scroller-nav-fade li a.prev,
+.themeblvd-news-scroller .scroller-nav-horizontal li a.flex-prev,
+.themeblvd-news-scroller .scroller-nav-fade li a.flex-prev {
 	background-position: 0 0;
 }
 .themeblvd-news-scroller .scroller-nav-horizontal li a.next,
-.themeblvd-news-scroller .scroller-nav-fade li a.next {
+.themeblvd-news-scroller .scroller-nav-fade li a.next,
+.themeblvd-news-scroller .scroller-nav-horizontal li a.flex-next,
+.themeblvd-news-scroller .scroller-nav-fade li a.flex-next {
 	background-position: -16px 0;
 }
-.themeblvd-news-scroller .scroller-nav-vertical li a.prev {
+.themeblvd-news-scroller .scroller-nav-vertical li a.prev,
+.themeblvd-news-scroller .scroller-nav-vertical li a.flex-prev {
 	background-position: 0 -16px;
 }
-.themeblvd-news-scroller .scroller-nav-vertical li a.next {
+.themeblvd-news-scroller .scroller-nav-vertical li a.next,
+.themeblvd-news-scroller .scroller-nav-vertical li a.flex-next {
 	background-position: -16px -16px;
 }
 .themeblvd-news-scroller .scroller-nav li a.prev:hover,
-.themeblvd-news-scroller .scroller-nav li a.next:hover {
+.themeblvd-news-scroller .scroller-nav li a.next:hover,
+.themeblvd-news-scroller .scroller-nav li a.flex-prev:hover,
+.themeblvd-news-scroller .scroller-nav li a.flex-next:hover {
 	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=70)";
 	filter: alpha(opacity=70);
 	-moz-opacity: 0.7;

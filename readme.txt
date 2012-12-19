@@ -3,7 +3,7 @@ Contributors: themeblvd
 Tags: themeblvd, slider, posts, scroll
 Requires at least: 3.2
 Tested up to: 3.3.1
-Stable tag: 1.0.5
+Stable tag: 1.0.6
 
 This plugin is a simple widget with slider that rotates through posts of specified category.
 
@@ -22,6 +22,10 @@ This plugin is a simple widget with slider that rotates through posts of specifi
 2. Backend view in Appearance > Widgets after placing in sidebar.
 
 == Changelog ==
+
+= 1.0.6 =
+
+* While this update does not directly incorporate FlexSlider v2.0, it ensures compatibility with it and allows your theme to determine the version of FlexSlider used. 
 
 = 1.0.5 =
 
