@@ -2,7 +2,7 @@
 /*
 Plugin Name: Theme Blvd News Scroller Widget
 Description: This plugin is a simple widget with slider that rotates through posts.
-Version: 1.0.4
+Version: 1.0.5
 Author: Jason Bobich
 Author URI: http://jasonbobich.com
 License: GPL2
@@ -331,7 +331,8 @@ class TB_Widget_News_Scroller extends WP_Widget {
 								<?php endif; ?>
 							</li>
 							<?php $i++; ?>
-						<?php endforeach; ?>	
+						<?php endforeach; ?>
+						<?php wp_reset_query(); ?>	
 					</ul>
 				</div><!-- .flexslider (end) -->
 			</div><!-- .scroller-wrap (end) -->
