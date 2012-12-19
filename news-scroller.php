@@ -30,6 +30,15 @@ define( 'TB_SCROLLER_PLUGIN_DIR', dirname( __FILE__ ) );
 define( 'TB_SCROLLER_PLUGIN_URI', plugins_url( '' , __FILE__ ) );
 
 /**
+ * Register text domain for localization.
+ */
+
+function themeblvd_news_scroller_textdomain() {
+	load_plugin_textdomain( 'themeblvd_scroller', false, TB_SCROLLER_PLUGIN_DIR . '/lang' );
+}
+add_action( 'plugins_loaded', 'themeblvd_news_scroller_textdomain' );
+
+/**
  * Include CSS
  */
  
@@ -104,18 +113,18 @@ class TB_Widget_News_Scroller extends WP_Widget {
         ?>
 		<!-- Title -->
 		<p>
-			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'themeblvd'); ?></label>
+			<label for="<?php echo $this->get_field_id('title'); ?>"><?php _e('Title:', 'themeblvd_scroller'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('title'); ?>" name="<?php echo $this->get_field_name('title'); ?>" type="text" value="<?php echo esc_attr($instance['title']); ?>" />
 		</p>
 		
 		<!-- Category -->
 		<p>
-			<label for="<?php echo $this->get_field_id('category'); ?>"><?php _e( 'Category', 'themeblvd' ); ?> </label>
+			<label for="<?php echo $this->get_field_id('category'); ?>"><?php _e( 'Category', 'themeblvd_scroller' ); ?> </label>
 			<select class="widefat" id="<?php echo $this->get_field_id('category'); ?>" name="<?php echo $this->get_field_name('category'); ?>">
 				<?php 
 				$list = null;
 				$categories = get_categories();
-				$options = array( '' => __( 'All Categories', 'themeblvd' ) );
+				$options = array( '' => __( 'All Categories', 'themeblvd_scroller' ) );
 				foreach ( $categories as $category ) $options[$category->term_id] = $category->name;
 				foreach ( $options as $id => $name ) {
 					$selected = '';
@@ -129,7 +138,7 @@ class TB_Widget_News_Scroller extends WP_Widget {
 		
 		<!-- Show/Hide Date -->
 		<p>
-			<label for="<?php echo $this->get_field_id('date'); ?>"><?php _e( 'Show post dates?', 'themeblvd' ); ?> </label>
+			<label for="<?php echo $this->get_field_id('date'); ?>"><?php _e( 'Show post dates?', 'themeblvd_scroller' ); ?> </label>
 			<select class="widefat" id="<?php echo $this->get_field_id('date'); ?>" name="<?php echo $this->get_field_name('date'); ?>">
 				<?php 
 				$list = null;
@@ -146,7 +155,7 @@ class TB_Widget_News_Scroller extends WP_Widget {
 		
 		<!-- Show/Hide Excerpt -->
 		<p>
-			<label for="<?php echo $this->get_field_id('excerpt'); ?>"><?php _e( 'Show post excerpts?', 'themeblvd' ); ?> </label>
+			<label for="<?php echo $this->get_field_id('excerpt'); ?>"><?php _e( 'Show post excerpts?', 'themeblvd_scroller' ); ?> </label>
 			<select class="widefat" id="<?php echo $this->get_field_id('excerpt'); ?>" name="<?php echo $this->get_field_name('excerpt'); ?>">
 				<?php 
 				$list = null;
@@ -163,7 +172,7 @@ class TB_Widget_News_Scroller extends WP_Widget {
 		
 		<!-- Show/Hide Featured Image -->
 		<p>
-			<label for="<?php echo $this->get_field_id('image'); ?>"><?php _e( 'Show featured images?', 'themeblvd' ); ?> </label>
+			<label for="<?php echo $this->get_field_id('image'); ?>"><?php _e( 'Show featured images?', 'themeblvd_scroller' ); ?> </label>
 			<select class="widefat" id="<?php echo $this->get_field_id('image'); ?>" name="<?php echo $this->get_field_name('image'); ?>">
 				<?php 
 				$list = null;
@@ -180,11 +189,11 @@ class TB_Widget_News_Scroller extends WP_Widget {
 		
 		<!-- Scroll Direction -->
 		<p>
-			<label for="<?php echo $this->get_field_id('scroll_direction'); ?>"><?php _e( 'How to transition?', 'themeblvd' ); ?> </label>
+			<label for="<?php echo $this->get_field_id('scroll_direction'); ?>"><?php _e( 'How to transition?', 'themeblvd_scroller' ); ?> </label>
 			<select class="widefat" id="<?php echo $this->get_field_id('scroll_direction'); ?>" name="<?php echo $this->get_field_name('scroll_direction'); ?>">
 				<?php 
 				$list = null;
-				$options = array( 'vertical' => __('Scroll Vertical', 'themeblvd'), 'horizontal' => __('Scroll Horizontal', 'themeblvd'), 'fade' => __('Fade', 'themeblvd') );
+				$options = array( 'vertical' => __('Scroll Vertical', 'themeblvd_scroller'), 'horizontal' => __('Scroll Horizontal', 'themeblvd_scroller'), 'fade' => __('Fade', 'themeblvd_scroller') );
 				foreach ( $options as $key => $name ) {
 					$selected = "";
 					if($key == $instance['scroll_direction']) $selected = 'selected="selected"';
@@ -197,30 +206,30 @@ class TB_Widget_News_Scroller extends WP_Widget {
 				
 		<!-- Scroll Timeout -->
 		<p>
-			<label for="<?php echo $this->get_field_id('scroll_timeout'); ?>"><?php _e('Scroll Timeout', 'themeblvd'); ?></label>
+			<label for="<?php echo $this->get_field_id('scroll_timeout'); ?>"><?php _e('Scroll Timeout', 'themeblvd_scroller'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('scroll_timeout'); ?>" name="<?php echo $this->get_field_name('scroll_timeout'); ?>" type="text" value="<?php echo esc_attr($instance['scroll_timeout']); ?>" />
-			<span style="display:block;padding:5px 0" class="description"><?php _e( 'Enter in the number of seconds in between the posts scrolling. Set this number to 0 if you don\'t want the posts to auto scroll.', 'themeblvd' ); ?></span>
+			<span style="display:block;padding:5px 0" class="description"><?php _e( 'Enter in the number of seconds in between the posts scrolling. Set this number to 0 if you don\'t want the posts to auto scroll.', 'themeblvd_scroller' ); ?></span>
 		</p>
 		
 		<!-- Excerpt Limit -->
 		<p>
-			<label for="<?php echo $this->get_field_id('excerpt_limit'); ?>"><?php _e('Excerpt Limit', 'themeblvd'); ?></label>
+			<label for="<?php echo $this->get_field_id('excerpt_limit'); ?>"><?php _e('Excerpt Limit', 'themeblvd_scroller'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('excerpt_limit'); ?>" name="<?php echo $this->get_field_name('excerpt_limit'); ?>" type="text" value="<?php echo esc_attr($instance['excerpt_limit']); ?>" />
-			<span style="display:block;padding:5px 0" class="description"><?php _e( 'If you have the excerpts set to show you can enter in a number of total <strong>words</strong> to automatically limit the excerpts by. Note that WordPress limits excerpts to 55 words by default. To allow excerpts to show normally, simply leave this blank.', 'themeblvd' ); ?></span>
+			<span style="display:block;padding:5px 0" class="description"><?php _e( 'If you have the excerpts set to show you can enter in a number of total <strong>words</strong> to automatically limit the excerpts by. Note that WordPress limits excerpts to 55 words by default. To allow excerpts to show normally, simply leave this blank.', 'themeblvd_scroller' ); ?></span>
 		</p>
 		
 		<!-- Number of Posts -->
 		<p>
-			<label for="<?php echo $this->get_field_id('num'); ?>"><?php _e('Maximum Number of Posts', 'themeblvd'); ?></label>
+			<label for="<?php echo $this->get_field_id('num'); ?>"><?php _e('Maximum Number of Posts', 'themeblvd_scroller'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('num'); ?>" name="<?php echo $this->get_field_name('num'); ?>" type="text" value="<?php echo esc_attr($instance['num']); ?>" />
-			<span style="display:block;padding:5px 0" class="description"><?php _e( 'Enter in a maximum number of posts for the scroller. Leave blank to pull all posts from specified category.', 'themeblvd' ); ?></span>
+			<span style="display:block;padding:5px 0" class="description"><?php _e( 'Enter in a maximum number of posts for the scroller. Leave blank to pull all posts from specified category.', 'themeblvd_scroller' ); ?></span>
 		</p>
 		
 		<!-- Height -->
 		<p>
-			<label for="<?php echo $this->get_field_id('height'); ?>"><?php _e('Scroller Height', 'themeblvd'); ?></label>
+			<label for="<?php echo $this->get_field_id('height'); ?>"><?php _e('Scroller Height', 'themeblvd_scroller'); ?></label>
 			<input class="widefat" id="<?php echo $this->get_field_id('height'); ?>" name="<?php echo $this->get_field_name('height'); ?>" type="text" value="<?php echo esc_attr($instance['height']); ?>" />
-			<span style="display:block;padding:5px 0" class="description"><?php _e( 'Enter in a number of pixels to make the height of each visible section. Depending on the different settings you\'ve chosen, your scroller will have varying amounts of content, however it\'s important that the each visible section have the same fixed height for the scroller to animate properly. So feel free to play with this number until it looks how you want.', 'themeblvd' ); ?></span>
+			<span style="display:block;padding:5px 0" class="description"><?php _e( 'Enter in a number of pixels to make the height of each visible section. Depending on the different settings you\'ve chosen, your scroller will have varying amounts of content, however it\'s important that the each visible section have the same fixed height for the scroller to animate properly. So feel free to play with this number until it looks how you want.', 'themeblvd_scroller' ); ?></span>
 		</p>
         <?php
 	}
