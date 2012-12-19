@@ -30,6 +30,7 @@ html[xmlns] .slides {display: block;}
 /* Primary Design */
 .themeblvd-news-scroller {
 	display: none;
+	font-size: 12px;
 	padding: 0 0 28px 0; /* Matches height of scroller-nav */
 	position: relative;
 }
@@ -111,15 +112,15 @@ html[xmlns] .slides {display: block;}
 .themeblvd-news-scroller .scroller-wrap {
 	padding: 0 5px 5px 5px;
 }
-.themeblvd-news-scroller .entry-title a,
-.widget .themeblvd-news-scroller .entry-title a {
+.themeblvd-news-scroller h4 a,
+.widget .themeblvd-news-scroller ul li h4 a {
 	border: 0;
 	display: inline;
 	padding: 0;
 	text-decoration: none;
 }
-.themeblvd-news-scroller .entry-title a:hover,
-.widget .themeblvd-news-scroller .entry-title a:hover {
+.themeblvd-news-scroller h4 a:hover,
+.widget .themeblvd-news-scroller ul li h4 a:hover {
 	background-color: transparent;
 }
 .themeblvd-news-scroller .scroller-image {
