@@ -2,7 +2,7 @@
 /*
 Plugin Name: Theme Blvd News Scroller Widget
 Description: This plugin is a simple widget with slider that rotates through posts.
-Version: 1.0.7
+Version: 1.0.8
 Author: Jason Bobich
 Author URI: http://jasonbobich.com
 License: GPL2
@@ -25,7 +25,7 @@ License: GPL2
 
 */
 
-define( 'TB_SCROLLER_PLUGIN_VERSION', '1.0.7' );
+define( 'TB_SCROLLER_PLUGIN_VERSION', '1.0.8' );
 define( 'TB_SCROLLER_PLUGIN_DIR', dirname( __FILE__ ) ); 
 define( 'TB_SCROLLER_PLUGIN_URI', plugins_url( '' , __FILE__ ) );
 
@@ -286,7 +286,8 @@ class TB_Widget_News_Scroller extends WP_Widget {
 					animation: 'fade',
 					<?php else : ?>
 					animation: 'slide',
-					direction: '<?php echo $instance['scroll_direction']; ?>',
+					slideDirection: '<?php echo $instance['scroll_direction']; ?>', // For FlexSlider v1.x
+					direction: '<?php echo $instance['scroll_direction']; ?>', // For FlexSlider v2.x
 					<?php endif; ?>
 					controlsContainer: '#<?php echo $widget_id; ?> .scroller-nav',
 					controlNav: false,
@@ -327,10 +328,12 @@ class TB_Widget_News_Scroller extends WP_Widget {
 									<h4><a href="<?php the_permalink(); ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a></h4>
 								</div><!-- .scroller-header (end) -->
 								<?php if( $instance['image'] == 'show' ) : ?>
-									<?php $image = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'grid_6' ); ?>
-									<div class="scroller-image">
-										<img src="<?php echo $image[0]; ?>" />
-									</div><!-- .scroller-image (end) -->
+								    <?php $image = wp_get_attachment_image_src( get_post_thumbnail_id($post->ID), 'grid_6' ); ?>
+								    <?php if( $image ) : ?>
+								        <div class="scroller-image">
+									        <img src="<?php echo $image[0]; ?>" />
+								        </div><!-- .scroller-image (end) -->
+								    <?php endif; ?>
 								<?php endif; ?>
 								<?php if( $instance['excerpt'] == 'show' ) : ?>
 									<div class="scroller-content">
