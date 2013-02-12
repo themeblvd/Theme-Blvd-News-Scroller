@@ -1,9 +1,8 @@
 === Theme Blvd News Scroller Widget ===
 Contributors: themeblvd
 Tags: themeblvd, slider, posts, scroll
-Requires at least: 3.2
-Tested up to: 3.5.0
-Stable tag: 1.0.8
+Tested up to: 3.5
+Stable tag: 1.0.9
 
 This plugin is a simple widget with slider that rotates through posts of specified category.
 
@@ -22,6 +21,10 @@ This plugin is a simple widget with slider that rotates through posts of specifi
 2. Backend view in Appearance > Widgets after placing in sidebar.
 
 == Changelog ==
+
+= 1.0.9 =
+
+* Fixed bug with incorrect date showing when using "fade" transition.
 
 = 1.0.8 =
 

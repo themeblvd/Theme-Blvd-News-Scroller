@@ -2,7 +2,7 @@
 /*
 Plugin Name: Theme Blvd News Scroller Widget
 Description: This plugin is a simple widget with slider that rotates through posts.
-Version: 1.0.8
+Version: 1.0.9
 Author: Jason Bobich
 Author URI: http://jasonbobich.com
 License: GPL2
@@ -25,7 +25,7 @@ License: GPL2
 
 */
 
-define( 'TB_SCROLLER_PLUGIN_VERSION', '1.0.8' );
+define( 'TB_SCROLLER_PLUGIN_VERSION', '1.0.9' );
 define( 'TB_SCROLLER_PLUGIN_DIR', dirname( __FILE__ ) ); 
 define( 'TB_SCROLLER_PLUGIN_URI', plugins_url( '' , __FILE__ ) );
 
@@ -267,6 +267,7 @@ class TB_Widget_News_Scroller extends WP_Widget {
 			'category' => $category,
 			'numberposts' => $number_posts,
 		);
+		$slide_offset = $instance['scroll_direction'] == 'fade' ? 1 : 2;
 		// Get Posts
 		$posts = get_posts( $args );
 		$count = count($posts);
@@ -299,7 +300,7 @@ class TB_Widget_News_Scroller extends WP_Widget {
 					slideshowSpeed: <?php echo $scroll_timeout;?>000,
 					<?php endif; ?>
 					start: function(slider){
-						var num = 2, // account for "clone" Flexslider adds
+						var num = <?php echo $slide_offset; ?>, // account for "clone" Flexslider adds (if not fade)
 							date = slider.container.find('li:nth-child('+num+')').find('.scroller-date').text();
 						slider.closest('.themeblvd-news-scroller').find('.scroller-nav span').text(date).fadeIn('fast');
 						$('#<?php echo $widget_id; ?> .scroller-nav').fadeIn();
@@ -308,7 +309,7 @@ class TB_Widget_News_Scroller extends WP_Widget {
 						slider.closest('.themeblvd-news-scroller').find('.scroller-nav span').slideUp();
 					},
 					after: function(slider){
-						var num = slider.currentSlide+2, // account for "clone" slide plugin adds
+						var num = slider.currentSlide+<?php echo $slide_offset; ?>, // account for "clone" slide plugin adds (if not fade)
 							date = slider.container.find('li:nth-child('+num+')').find('.scroller-date').text();
 						slider.closest('.themeblvd-news-scroller').find('.scroller-nav span').text(date).fadeIn('fast');
 					}
